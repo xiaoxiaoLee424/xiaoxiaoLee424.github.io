@@ -32,6 +32,7 @@ const DATA = {
   /* 社交链接：icon 可选 github / gmail / x / instagram / scholar / link */
   links: [
     { icon: "github", label: "GitHub", url: "https://github.com/xiaoxiaoLee424" },
+    { icon: "x",      label: "X (Twitter)", url: "https://x.com/xiaoxiaoLee424" },
     { icon: "link",   label: { zh: "华附论坛", en: "HSFZ BBS" }, url: "https://bbs.hsfz-bbs.cn" }
   ],
 
