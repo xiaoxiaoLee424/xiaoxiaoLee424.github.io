@@ -81,7 +81,7 @@ const DATA = {
   /* ---------- 动态 News ---------- */
   news: [
     { date: "2026.11", zh: '参与大学生创新创业训练计划（<b>雏雁计划</b>）项目 <b>「邮小伴 PostPal」</b> 立项，项目周期 2026.10 – 2027.04。', en: 'Project <b>PostPal</b> approved under BUPT\'s undergraduate innovation program (Chuyan Program), 2026.10 – 2027.04.' },
-    { date: "2026.10", zh: '参加北京邮电大学 <b>程序设计大赛</b>，进入复赛。', en: 'Advanced to the second round of the <b>BUPT Programming Contest</b>.' },
+    { date: "2026.10", zh: '参加北京邮电大学 <b>程序设计大赛</b>，进入决赛。', en: 'Advanced to the finals of the <b>BUPT Programming Contest</b>.' },
     { date: "2026.10", zh: '借助 AI 工具独立开发并上线 <b>华附校园论坛（HSFZ BBS）</b>，目前在三个校区运行中。', en: 'Built and launched <b>HSFZ BBS</b> on my own with AI tools — now close to 400 registered users across three campuses.' },
     { date: "2026.09", zh: '入读 <b>北京邮电大学计算机学院</b>，计算机专业。', en: 'Started my undergraduate study in CS at <b>BUPT</b>.' }
   ],
@@ -155,7 +155,7 @@ const DATA = {
   /* ---------- 荣誉与竞赛（没有就留空数组 []） ---------- */
   awards: [
     { year: "2026.10", name: { zh: "北京邮电大学程序设计大赛", en: "BUPT Programming Contest" },
-      prize: { zh: "进入复赛", en: "Second Round" } }
+      prize: { zh: "进入决赛", en: "Finalist" } }
   ],
 
   /* ---------- 技能 ---------- */
