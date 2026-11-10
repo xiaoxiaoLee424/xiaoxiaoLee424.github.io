@@ -245,6 +245,15 @@ code {
 .social-icon svg { width: 20px; height: 20px; fill: currentColor; }
 .social-icon:hover { transform: translateY(-2px); color: var(--accent); }
 
+/* 可点击复制的文本 */
+.copyable {
+  cursor: pointer;
+  border-bottom: 1px dashed var(--accent-soft);
+  transition: color 0.2s, border-color 0.2s;
+}
+.copyable:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.copyable.copied { color: var(--accent); border-bottom-color: transparent; }
+
 /* ===================== 简介框 ===================== */
 .bio-box {
   background: #faf8fc;
@@ -572,6 +581,9 @@ ul.bullets li::marker { color: var(--accent-soft); }
       nav: { biography: "简介", research: "研究", news: "动态", education: "教育", experience: "实习",
              publications: "科研", projects: "项目", skills: "技能" },
       print: "打印 / PDF",
+      wechat: "微信",
+      phone: "电话",
+      copied: "已复制",
       section: {
         biography: "Biography 个人简介",
         research: "Research Interests 研究兴趣",
@@ -591,6 +603,9 @@ ul.bullets li::marker { color: var(--accent-soft); }
       nav: { biography: "Biography", research: "Research", news: "News", education: "Education", experience: "Experience",
              publications: "Publications", projects: "Projects", skills: "Skills" },
       print: "Print / PDF",
+      wechat: "WeChat",
+      phone: "Phone",
+      copied: "Copied",
       section: {
         biography: "Biography",
         research: "Research Interests",
@@ -655,9 +670,7 @@ ul.bullets li::marker { color: var(--accent-soft); }
         '<h1><span id="typed"></span><span class="caret" aria-hidden="true"></span></h1>' +
         '<h3>' + t(DATA.heroSub) + '</h3>' +
         '<p class="hero-meta">' + t(DATA.heroAffil) + '</p>' +
-        '<p class="hero-meta" style="margin-bottom:6px;">' +
-          '<b>Email</b>：<a href="mailto:' + DATA.email + '">' + t(DATA.emailDisplay) + '</a>' +
-        '</p>' +
+        '<p class="hero-meta" style="margin-bottom:6px;">' + contactHTML() + '</p>' +
         '<div class="social-row">' + socials + '</div>' +
       '</div>' +
       '<div class="hero-right">' +
@@ -665,6 +678,29 @@ ul.bullets li::marker { color: var(--accent-soft); }
         '<div class="hero-badge">' + t(DATA.heroBadge) + '</div>' +
       '</div>' +
     '</section>';
+  }
+
+  function formatPhone(v) {
+    var d = String(v || "").replace(/\D/g, "");
+    if (d.length !== 11) return v;
+    return d.slice(0, 3) + " " + d.slice(3, 7) + " " + d.slice(7);
+  }
+
+  function contactHTML() {
+    var lines = [];
+    if (DATA.email) {
+      lines.push('<b>Email</b>：<a href="mailto:' + DATA.email + '">' + t(DATA.emailDisplay) + '</a>');
+    }
+    if (DATA.wechat) {
+      lines.push('<b>' + UI[lang].wechat + '</b>：<span class="copyable" data-copy="' +
+        esc(DATA.wechat) + '" title="' + (lang === "zh" ? "点击复制" : "Click to copy") + '">' +
+        esc(DATA.wechat) + '</span>');
+    }
+    if (DATA.phone) {
+      lines.push('<b>' + UI[lang].phone + '</b>：<a href="tel:' + esc(DATA.phone) + '">' +
+        esc(formatPhone(DATA.phone)) + '</a>');
+    }
+    return lines.join("<br>");
   }
 
   function sectionOpen(id, title) {
@@ -920,6 +956,28 @@ ul.bullets li::marker { color: var(--accent-soft); }
       try { localStorage.setItem(STORE_KEY, lang); } catch (e) {}
       render();
     });
+  });
+
+  /* ---------- 点击复制 ---------- */
+  document.addEventListener("click", function (ev) {
+    var el = ev.target.closest && ev.target.closest(".copyable");
+    if (!el) return;
+    var text = el.dataset.copy || el.textContent;
+    var done = function () {
+      var original = el.textContent;
+      el.textContent = UI[lang].copied;
+      el.classList.add("copied");
+      setTimeout(function () { el.textContent = original; el.classList.remove("copied"); }, 1200);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(done);
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
   });
 
   /* ---------- 打印 ---------- */

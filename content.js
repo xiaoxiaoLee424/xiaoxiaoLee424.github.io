@@ -27,11 +27,12 @@ const DATA = {
   /* ---------- 联系方式 ---------- */
   email: "xxlee424@bupt.edu.cn",
   emailDisplay: { zh: "xxlee424 [at] bupt.edu.cn", en: "xxlee424 [at] bupt.edu.cn" },
+  wechat: "xiaoxiaolee424",
+  phone: "13610030054",
 
   /* 社交链接：icon 可选 github / gmail / x / instagram / scholar / link */
   links: [
     { icon: "github", label: "GitHub", url: "https://github.com/xiaoxiaoLee424" },
-    { icon: "gmail",  label: "Email",  url: "mailto:xxlee424@bupt.edu.cn" },
     { icon: "link",   label: { zh: "华附论坛", en: "HSFZ BBS" }, url: "https://bbs.hsfz-bbs.cn" }
   ],
 
