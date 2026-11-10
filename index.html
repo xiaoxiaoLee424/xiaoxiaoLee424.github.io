@@ -674,7 +674,8 @@ ul.bullets li::marker { color: var(--accent-soft); }
         '<div class="social-row">' + socials + '</div>' +
       '</div>' +
       '<div class="hero-right">' +
-        '<img class="avatar" src="assets/avatar.jpg" alt="' + esc(t(DATA.name)) + '">' +
+        '<img class="avatar" src="assets/avatar.jpg" width="196" height="196" alt="' + esc(t(DATA.name)) +
+          '" onerror="this.onerror=null;this.src=\'assets/avatar.svg\'">' +
         '<div class="hero-badge">' + t(DATA.heroBadge) + '</div>' +
       '</div>' +
     '</section>';

@@ -28,7 +28,6 @@ const DATA = {
   email: "xxlee424@bupt.edu.cn",
   emailDisplay: { zh: "xxlee424 [at] bupt.edu.cn", en: "xxlee424 [at] bupt.edu.cn" },
   wechat: "xiaoxiaolee424",
-  phone: "13610030054",
 
   /* 社交链接：icon 可选 github / gmail / x / instagram / scholar / link */
   links: [
